@@ -1,80 +1,76 @@
-// --- FAILSAFE DEMO PAYLOAD: OPERATION HIGH-TIDE (MASSIVE) ---
-const GOLD_STANDARD_DEMO = {
+// --- FAILSAFE DEMO PAYLOAD: OPERATION HAWALA-TIDE (INDIA LOCALIZED) ---
+var GOLD_STANDARD_DEMO = {
     metadata: { 
         device: "EXHIBIT-A-SAMSUNG-S23-ULTRA", 
         extracted_at: new Date().toISOString(),
         os_version: "Android 13 (API 33)",
-        timezone: "EST"
+        timezone: "IST"
     },
     contacts: [
-        { name: "The Broker (Suspect)", number: "+1-202-555-0147" },
-        { name: "Logistics Admin", number: "+1-202-555-0122" },
-        { name: "Mule 1 - Miami", number: "+1-305-555-0199" },
-        { name: "Mule 2 - Atlanta", number: "+1-404-555-0233" },
-        { name: "Mule 3 - NY", number: "+1-212-555-0844" },
-        { name: "Safehouse Burner", number: "+1-202-555-0900" },
-        { name: "Crypto Washer", number: "+44-7700-900077" },
-        { name: "The Boss", number: "+52-55-5555-0199" },
-        { name: "Pilot (Charter)", number: "+1-786-555-0211" },
-        { name: "Offshore Counsel", number: "+41-44-555-0198" },
-        { name: "Bank Alerts", number: "80055" },
-        { name: "Cleaners", number: "+1-800-555-8888" }
+        { name: "The Broker (Suspect)", number: "+91-98765-43210" },
+        { name: "Dubai Supplier", number: "+971-50-123-4567" },
+        { name: "Mumbai Port Fixer", number: "+91-99887-76655" },
+        { name: "Transport Mule (NH48)", number: "+91-88776-65544" },
+        { name: "Ahmedabad Receiver", number: "+91-77665-54433" },
+        { name: "Hawala Angadia", number: "+91-91234-56789" },
+        { name: "The Boss (Delhi)", number: "+91-99999-00000" },
+        { name: "Safehouse Burner", number: "+91-80000-11111" },
+        { name: "Bank Alerts", number: "VM-HDFCBK" },
+        { name: "Zomato", number: "JD-ZOMATO" },
+        { name: "Cleaners", number: "+91-70000-22222" }
     ],
     whatsapp: {
         messages: [
-            // April 7 - The Setup
-            { sender: "The Boss", text: "Is the package cleared customs?", time: "2026-04-07 09:00:00", risk_flags: ["COORDINATION"], trigger_words: ["package"], source: "DB" },
-            { sender: "Mule 1 - Miami", text: "Yes, we are at the drop location now. Awaiting payment confirmation.", time: "2026-04-07 09:15:00", risk_flags: ["COORDINATION", "FINANCIAL"], trigger_words: ["drop", "location", "payment"], source: "DB" },
-            { sender: "The Broker (Suspect)", text: "I will initiate the wire transfer to the shell company.", time: "2026-04-07 09:30:00", risk_flags: ["FINANCIAL"], trigger_words: ["wire", "transfer"], source: "DB" },
-            { sender: "Offshore Counsel", text: "Wire received. You are clear to move the shipment across the border.", time: "2026-04-07 11:00:00", risk_flags: ["FINANCIAL", "COORDINATION"], trigger_words: ["Wire", "border"], source: "DB" },
+            // April 7 - The Deal & Hawala Transfer
+            { sender: "Dubai Supplier", text: "Container MSKU908876 is loaded. Auto-parts front is secure.", time: "2026-04-07 10:00:00", risk_flags: ["COORDINATION"], trigger_words: ["Container", "front"], source: "DB" },
+            { sender: "The Boss (Delhi)", text: "Has the angadia confirmed the payment?", time: "2026-04-07 10:15:00", risk_flags: ["FINANCIAL"], trigger_words: ["angadia", "payment"], source: "DB" },
+            { sender: "The Broker (Suspect)", text: "Yes. Sent 50,000 USDT to the hawala network. TRC20 address: TQvn3r... waiting for clearance.", time: "2026-04-07 10:30:00", risk_flags: ["FINANCIAL"], trigger_words: ["USDT", "hawala", "address"], source: "DB" },
+            { sender: "Hawala Angadia", text: "USDT received. Cash is ready for the port officials in Mumbai.", time: "2026-04-07 12:00:00", risk_flags: ["FINANCIAL", "COORDINATION"], trigger_words: ["USDT", "Cash", "officials"], source: "DB" },
 
-            // April 8 - The Transit
-            { sender: "Mule 1 - Miami", text: "Handing off to the Atlanta team. Meet at the warehouse.", time: "2026-04-08 14:00:00", risk_flags: ["COORDINATION"], trigger_words: ["Meet"], source: "DB" },
-            { sender: "Mule 2 - Atlanta", text: "We have it. Packing it into the charter plane now.", time: "2026-04-08 20:15:00", risk_flags: [], trigger_words: [], source: "DB" },
-            { sender: "Pilot (Charter)", text: "Flight plan filed. We leave at midnight for the NY airport.", time: "2026-04-08 22:00:00", risk_flags: ["COORDINATION"], trigger_words: ["airport"], source: "DB" },
+            // April 8 - Mumbai Port Arrival
+            { sender: "Mumbai Port Fixer", text: "Ship docked at Nhava Sheva. Customs inspector took the cut.", time: "2026-04-08 14:00:00", risk_flags: ["COORDINATION", "FINANCIAL"], trigger_words: ["Customs", "inspector", "cut"], source: "DB" },
+            { sender: "The Broker (Suspect)", text: "Good. Load the gold into the false bottom of the Tata truck.", time: "2026-04-08 14:15:00", risk_flags: ["COORDINATION"], trigger_words: ["gold", "truck"], source: "DB" },
+            { sender: "Transport Mule (NH48)", text: "Loaded. Leaving Mumbai now. Taking the NH48 towards Gujarat.", time: "2026-04-08 18:30:00", risk_flags: ["COORDINATION"], trigger_words: ["NH48", "Gujarat"], source: "DB" },
 
-            // April 9 - The NY Arrival & Washing
-            { sender: "Mule 3 - NY", text: "Landed. We bypassed security. Heading to the safehouse location.", time: "2026-04-09 04:30:00", risk_flags: ["COORDINATION"], trigger_words: ["location"], source: "DB" },
-            { sender: "Crypto Washer", text: "I need the new BTC address to wash the remaining funds from the buyer.", time: "2026-04-09 15:30:00", risk_flags: ["FINANCIAL"], trigger_words: ["BTC", "funds"], source: "DB" },
-            { sender: "The Broker (Suspect)", text: "Send the crypto to bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh. Break it into 5 smaller payments.", time: "2026-04-09 15:32:00", risk_flags: ["FINANCIAL"], trigger_words: ["crypto", "payments", "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"], source: "DB" },
-            { sender: "The Boss", text: "Confirm when the bank deposits are cleared.", time: "2026-04-09 18:00:00", risk_flags: ["FINANCIAL"], trigger_words: ["bank"], source: "DB" },
+            // April 9 - Transit & Handoff
+            { sender: "Transport Mule (NH48)", text: "Crossed Vapi border. No police checking.", time: "2026-04-09 02:30:00", risk_flags: ["COORDINATION"], trigger_words: ["border", "police"], source: "DB" },
+            { sender: "Ahmedabad Receiver", text: "I have the keys to the Narol safehouse. Bring the truck to the back alley.", time: "2026-04-09 11:00:00", risk_flags: ["COORDINATION"], trigger_words: ["safehouse", "alley"], source: "DB" },
+            { sender: "The Broker (Suspect)", text: "Transfer the remaining USDT to my cold wallet. The job is done.", time: "2026-04-09 15:32:00", risk_flags: ["FINANCIAL"], trigger_words: ["USDT", "wallet"], source: "DB" },
 
-            // April 10 - The Raid & Panic (Today)
-            { sender: "Mule 3 - NY", text: "URGENT: Cops are outside the building! They found the drop!", time: "2026-04-10 07:15:00", risk_flags: ["URGENT_DESTRUCTION", "COORDINATION"], trigger_words: ["URGENT", "cops", "drop"], source: "RAM" },
-            { sender: "The Boss", text: "Wipe all phones and burn the ledger immediately. Do not get caught.", time: "2026-04-10 07:16:00", risk_flags: ["URGENT_DESTRUCTION"], trigger_words: ["Wipe", "burn", "immediately"], source: "RAM" },
-            { sender: "Cleaners", text: "We are en route to clear the secondary location.", time: "2026-04-10 07:20:00", risk_flags: ["URGENT_DESTRUCTION", "COORDINATION"], trigger_words: ["clear", "location"], source: "RAM" },
-            { sender: "The Broker (Suspect)", text: "Deleting the chat history now. I am moving the remaining BTC to cold storage.", time: "2026-04-10 07:30:00", risk_flags: ["URGENT_DESTRUCTION", "FINANCIAL"], trigger_words: ["Deleting", "chat", "history", "BTC"], source: "RAM" }
+            // April 10 - The DRI/ATS Raid (Today)
+            { sender: "Ahmedabad Receiver", text: "URGENT: ATS and DRI vehicles spotted outside the Narol compound!", time: "2026-04-10 07:15:00", risk_flags: ["URGENT_DESTRUCTION", "COORDINATION"], trigger_words: ["URGENT", "ATS", "DRI"], source: "RAM" },
+            { sender: "The Boss (Delhi)", text: "Format the phones. Burn the ledger. Do not speak to the CBI.", time: "2026-04-10 07:16:00", risk_flags: ["URGENT_DESTRUCTION"], trigger_words: ["Format", "Burn", "CBI"], source: "RAM" },
+            { sender: "Cleaners", text: "We are en route to clear the secondary location in Surat.", time: "2026-04-10 07:20:00", risk_flags: ["URGENT_DESTRUCTION", "COORDINATION"], trigger_words: ["clear", "location"], source: "RAM" },
+            { sender: "The Broker (Suspect)", text: "Wiping WhatsApp data now. Smashing the hard drives.", time: "2026-04-10 07:30:00", risk_flags: ["URGENT_DESTRUCTION"], trigger_words: ["Wiping", "data", "Smashing", "drives"], source: "RAM" }
         ]
     },
     carrier_data: {
         sms: [
             // Mundane / Alerts
-            { contact: "Bank Alerts", text: "Your 2FA code for Offshore Transfer is 849-021. Do not share this.", time: "2026-04-07 09:35:00", risk_flags: ["FINANCIAL"], trigger_words: ["Transfer"] },
-            { contact: "Bank Alerts", text: "ALERT: Wire transfer of $450,000 initiated to account ending in 9942.", time: "2026-04-07 10:00:00", risk_flags: ["FINANCIAL"], trigger_words: ["Wire", "transfer", "account"] },
-            { contact: "+1-800-555-9999", text: "Your dry cleaning is ready for pickup.", time: "2026-04-08 12:00:00", risk_flags: [], trigger_words: [] },
+            { contact: "Bank Alerts", text: "HDFC Alert: INR 45,00,000 credited to A/c ending 0942 via RTGS. Ref: HDFCR55...", time: "2026-04-07 10:00:00", risk_flags: ["FINANCIAL"], trigger_words: ["INR", "credited", "RTGS"] },
+            { contact: "Zomato", text: "Your order from 'Honest Restaurant' is out for delivery with Valmik.", time: "2026-04-08 21:00:00", risk_flags: [], trigger_words: [] },
+            { contact: "Bank Alerts", text: "Your OTP for Offshore Forex Transfer is 849021. Do not share this OTP.", time: "2026-04-09 15:30:00", risk_flags: ["FINANCIAL"], trigger_words: ["Forex", "Transfer", "OTP"] },
             
             // Burner Comms
-            { contact: "Logistics Admin", text: "The warehouse in Atlanta is secured.", time: "2026-04-08 13:00:00", risk_flags: [], trigger_words: [] },
-            { contact: "Safehouse Burner", text: "Did you delete the server logs? The cops are snooping around the old address.", time: "2026-04-09 23:15:00", risk_flags: ["URGENT_DESTRUCTION"], trigger_words: ["delete", "cops"] },
-            { contact: "Safehouse Burner", text: "Raid confirmed. Remove the hard drives and hide the cash.", time: "2026-04-10 07:18:00", risk_flags: ["URGENT_DESTRUCTION", "FINANCIAL"], trigger_words: ["Raid", "Remove", "hide"] }
+            { contact: "Safehouse Burner", text: "Did you delete the CCTV footage? The local police are asking questions.", time: "2026-04-09 23:15:00", risk_flags: ["URGENT_DESTRUCTION"], trigger_words: ["delete", "police"] },
+            { contact: "Safehouse Burner", text: "Raid confirmed. Remove the sim cards and hide the cash.", time: "2026-04-10 07:18:00", risk_flags: ["URGENT_DESTRUCTION", "FINANCIAL"], trigger_words: ["Raid", "Remove", "hide", "cash"] }
         ]
     },
     media_metadata: [
-        { filename: "miami_dock_recon.jpg", filepath: "demo/miami.jpg", date: "2026-04-07 09:10:00", hash: "a3f5b2c198fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", gps: { lat: 25.7617, lon: -80.1918 } }, // Miami
-        { filename: "wire_receipt_screenshot.png", filepath: "demo/ledger1.png", date: "2026-04-07 11:05:00", hash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", gps: null },
-        { filename: "atlanta_warehouse_interior.jpg", filepath: "demo/atlanta.jpg", date: "2026-04-08 20:00:00", hash: "c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855a3f5b2c198fc1", gps: { lat: 33.7490, lon: -84.3880 } }, // Atlanta
-        { filename: "jfk_airport_tarmac.jpg", filepath: "demo/jfk.jpg", date: "2026-04-09 04:15:00", hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", gps: { lat: 40.6413, lon: -73.7781 } }, // JFK
-        { filename: "crypto_wallet_qr.png", filepath: "demo/qr.png", date: "2026-04-09 15:35:00", hash: "f4c8996fb92427ae41e4649b934ca495991b7852b855e3b0c44298fc1c149afb", gps: null },
-        { filename: "safehouse_front_door.jpg", filepath: "demo/safehouse.jpg", date: "2026-04-10 06:00:00", hash: "9b934ca495991b7852b855e3b0c44298fc1c149afbf4c8996fb92427ae41e464", gps: { lat: 40.7128, lon: -74.0060 } } // NYC
+        { filename: "dubai_container_loading.jpg", filepath: "demo/dubai.jpg", date: "2026-04-07 09:10:00", hash: "a3f5b2c198fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", gps: { lat: 25.2048, lon: 55.2708 } }, // Dubai
+        { filename: "angadia_receipt.png", filepath: "demo/ledger1.png", date: "2026-04-07 12:05:00", hash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", gps: null },
+        { filename: "nhava_sheva_dock.jpg", filepath: "demo/mumbai.jpg", date: "2026-04-08 14:10:00", hash: "c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855a3f5b2c198fc1", gps: { lat: 18.9493, lon: 72.9515 } }, // Mumbai Port
+        { filename: "highway_dhaba_stop.jpg", filepath: "demo/highway.jpg", date: "2026-04-09 03:15:00", hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", gps: { lat: 21.1702, lon: 72.8311 } }, // Surat/Vapi Highway
+        { filename: "binance_wallet_qr.png", filepath: "demo/qr.png", date: "2026-04-09 15:35:00", hash: "f4c8996fb92427ae41e4649b934ca495991b7852b855e3b0c44298fc1c149afb", gps: null },
+        { filename: "narol_safehouse_gate.jpg", filepath: "demo/safehouse.jpg", date: "2026-04-10 06:00:00", hash: "9b934ca495991b7852b855e3b0c44298fc1c149afbf4c8996fb92427ae41e464", gps: { lat: 23.0225, lon: 72.5714 } } // Ahmedabad
     ],
     file_system: [
-        { name: "offshore_keys_encrypted.pgp", path: "/sdcard/Download/Secure", local_path: "demo/keys.pgp" },
-        { name: "flight_manifest_v2.pdf", path: "/sdcard/Download/Documents", local_path: "demo/manifest.pdf" },
-        { name: "wallet.dat", path: "/sdcard/Download/Crypto", local_path: "demo/wallet.dat" },
-        { name: "passwords.txt", path: "/sdcard/Download", local_path: "demo/passwords.txt" },
-        { name: "wire_transfer_receipt.pdf", path: "/sdcard/Download/Financial", local_path: "demo/receipt.pdf" },
-        { name: "burner_protocols.docx", path: "/sdcard/Documents", local_path: "demo/protocols.docx" },
-        { name: "swiss_bank_routing.csv", path: "/sdcard/Download/Financial", local_path: "demo/routing.csv" }
+        { name: "hawala_ledger.xlsx", path: "/sdcard/Download/Financial", local_path: "demo/ledger.xlsx" },
+        { name: "dubai_customs_manifest.pdf", path: "/sdcard/Download/Documents", local_path: "demo/manifest.pdf" },
+        { name: "trust_wallet_backup.dat", path: "/sdcard/Download/Crypto", local_path: "demo/wallet.dat" },
+        { name: "pgp_private_key.asc", path: "/sdcard/Download/Secure", local_path: "demo/key.asc" },
+        { name: "bribe_payments_april.txt", path: "/sdcard/Documents", local_path: "demo/bribes.txt" },
+        { name: "fake_gst_invoices.pdf", path: "/sdcard/Download/Business", local_path: "demo/gst.pdf" }
     ]
 };
 

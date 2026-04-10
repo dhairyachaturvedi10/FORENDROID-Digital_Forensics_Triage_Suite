@@ -165,7 +165,7 @@ function routeFromCmd(tab, term) {
 // --- TABS & DATA LOADING ---
 function switchTab(tabName) {
     // 1. The Master List of all possible tabs (ADDED 'heatmap' and 'geo')
-    const tabs = ['master', 'threats', 'whatsapp', 'sms', 'files', 'gallery', 'coc', 'geo', 'heatmap', 'crypto'];
+    const tabs = ['master', 'threats', 'contacts', 'whatsapp', 'sms', 'files', 'gallery', 'coc', 'geo', 'heatmap', 'crypto'];
     
     // 2. Turn ALL tabs OFF
     tabs.forEach(t => {

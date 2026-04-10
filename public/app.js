@@ -164,22 +164,44 @@ function routeFromCmd(tab, term) {
 
 // --- TABS & DATA LOADING ---
 function switchTab(tabName) {
-    const tabs = ['master', 'threats', 'contacts', 'whatsapp', 'sms', 'files', 'gallery', 'geo', 'coc'];
+    // 1. The Master List of all possible tabs (ADDED 'heatmap' and 'geo')
+    const tabs = ['master', 'threats', 'whatsapp', 'sms', 'files', 'gallery', 'coc', 'geo', 'heatmap', 'crypto'];
+    
+    // 2. Turn ALL tabs OFF
     tabs.forEach(t => {
-        document.getElementById(`tab-${t}`).classList.add('hidden');
-        const btn = document.getElementById(`tab-btn-${t}`);
-        if(btn) {
-            btn.classList.remove('border-blue-500', 'text-blue-400');
-            btn.classList.add('border-transparent', 'text-gray-500');
+        const tabContent = document.getElementById(`tab-${t}`);
+        const tabBtn = document.getElementById(`tab-btn-${t}`);
+        
+        if (tabContent) {
+            tabContent.classList.add('hidden');
+        }
+        if (tabBtn) {
+            tabBtn.classList.remove('border-blue-500', 'text-blue-400');
+            tabBtn.classList.add('border-transparent', 'text-gray-500');
         }
     });
-    document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+    // 3. Turn the CLICKED tab ON
+    const activeContent = document.getElementById(`tab-${tabName}`);
     const activeBtn = document.getElementById(`tab-btn-${tabName}`);
-    activeBtn.classList.remove('border-transparent', 'text-gray-500');
-    activeBtn.classList.add('border-blue-500', 'text-blue-400');
     
-    // Redraw graph if switching to intelligence tab to ensure it fits container
-    if (tabName === 'threats' && currentData) setTimeout(renderIntelligence, 50);
+    if (activeContent) {
+        activeContent.classList.remove('hidden');
+    }
+    if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-gray-500');
+        activeBtn.classList.add('border-blue-500', 'text-blue-400');
+    }
+    
+    // 4. Force UI Redraws for complex visualizers
+    if (currentData) {
+        if (tabName === 'threats' && typeof renderIntelligence === 'function') {
+            setTimeout(renderIntelligence, 100); // Vis.js needs the container to be visible first
+        }
+        if (tabName === 'heatmap' && typeof renderHeatmap === 'function') {
+            setTimeout(renderHeatmap, 50); // Ensures the bars animate properly after un-hiding
+        }
+    }
 }
 
 function clearDashboard() {
@@ -785,4 +807,43 @@ function loadDemoMode() {
     
     // 6. Update Header Status
     document.getElementById('device-selector').innerHTML = `<option>${currentSerial}</option>`;
+}
+
+function renderHeatmap() {
+    const container = document.getElementById('heatmap-container');
+    if (!container || !currentData) return;
+
+    // 1. Aggregate message counts by hour (0 to 23)
+    const hourlyCounts = new Array(24).fill(0);
+    const allMessages = [...(currentData.whatsapp?.messages || []), ...(currentData.carrier_data?.sms || [])];
+    
+    allMessages.forEach(msg => {
+        const date = new Date(msg.time);
+        if (!isNaN(date.getHours())) {
+            hourlyCounts[date.getHours()]++;
+        }
+    });
+
+    const maxCount = Math.max(...hourlyCounts, 1); // Prevent division by zero
+
+    // 2. Build the visual bars
+    container.innerHTML = hourlyCounts.map((count, hour) => {
+        const heightPct = (count / maxCount) * 100;
+        const isNightOp = hour >= 0 && hour <= 5; // Flags activity between Midnight and 5 AM
+        
+        // Visual styling: Red for late-night shady activity, Blue for normal hours
+        const colorClass = (isNightOp && count > 0) ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-blue-500/80';
+        
+        return `
+            <div class="flex flex-col items-center justify-end h-full w-full group relative mx-0.5">
+                <div class="absolute -top-8 opacity-0 group-hover:opacity-100 text-[10px] bg-white text-black font-bold px-2 py-1 rounded transition-opacity z-10 pointer-events-none">
+                    ${count} msgs
+                </div>
+                
+                <div class="${colorClass} w-full rounded-t-sm transition-all duration-700 hover:opacity-100 opacity-80" style="height: ${heightPct}%"></div>
+                
+                <div class="text-[9px] text-gray-500 mt-3 font-mono -rotate-45">${hour.toString().padStart(2, '0')}:00</div>
+            </div>
+        `;
+    }).join('');
 }

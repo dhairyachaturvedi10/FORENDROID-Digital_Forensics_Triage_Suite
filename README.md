@@ -14,6 +14,7 @@ Traditional digital forensics labs are often backed up for months. In time-sensi
 * **Live Link Analysis (Vis.js):** Automatically generates an interactive, physics-based network graph mapping the frequency and threat-level of communications between the suspect and their accomplices.
 * **Master Chronological Timeline:** Merges WhatsApp logs, Carrier SMS, and Photo EXIF metadata into a single, filterable chronological timeline.
 * **Geospatial Correlation:** Extracts GPS coordinates from media EXIF data and plots them on an interactive OpenStreetMap to track suspect movement.
+* **Behavioural Heatmap:** Generates a graph for visualising the daily activity status of a suspect, locating the hours they are most active, or if there is a risk for Night Operations.
 * **Cryptographic Integrity:** Generates SHA-256 hashes for all extracted evidence to maintain a strict chain of custody.
 * **Court-Ready Exports:** One-click generation of paginated, hash-verified, and non-repudiable PDF evidence reports via `jsPDF`.
 
@@ -100,6 +101,8 @@ The dashboard will instantly populate with a pre-certified, highly complex data 
 
 *Option B: Live Device Extraction*
 Ensure the target Android device is powered on, unlocked, and has USB Debugging enabled.
+
+*Note: Make sure to change the password and database names in server.js, and all other manual information as well.*
 
 Connect the device to your machine via USB.
 
